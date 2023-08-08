@@ -1,9 +1,9 @@
-import { LinearGradient } from 'expo-linear-gradient'
-import React, { useState } from 'react'
-import { ImageBackground, SafeAreaView, StyleSheet } from 'react-native'
-import GameScreen from './screens/GameScreen'
-import InputNumber from './screens/InputNumber'
-import Colors from "./constants/colors"
+import { LinearGradient } from "expo-linear-gradient";
+import React, { useState } from "react";
+import { ImageBackground, SafeAreaView, StyleSheet } from "react-native";
+import GameScreen from "./screens/GameScreen";
+import InputNumber from "./screens/InputNumber";
+import Colors from "./constants/colors";
 
 const App = () => {
   const [userNumber, setUserNumber] = useState();
@@ -12,7 +12,7 @@ const App = () => {
     setUserNumber(pickedNumber)
   }
 
-  let screen = <InputNumber onPickNumber={pickedNumberHandler} />;
+  let screen = <InputNumber pickedNumberHandler={pickedNumberHandler} />;
 
   if (userNumber) {
     screen = <GameScreen userNumber={userNumber} />;
@@ -20,14 +20,14 @@ const App = () => {
 
   return (
     <LinearGradient colors={[Colors.primary700, Colors.accent500]} style={styles.rootScreen}>
-      <ImageBackground resizeMode='cover' source={require("./assets/bakgroundImage.jpg")}
+      <ImageBackground resizeMode="cover" source={require("./assets/bakgroundImage.jpg")}
         style={styles.rootScreen} imageStyle={styles.backgroundImage}>
         <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
       </ImageBackground>
     </LinearGradient>
   )
 }
-export default App
+export default App;
 
 const styles = StyleSheet.create({
   rootScreen: {

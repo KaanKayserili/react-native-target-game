@@ -4,7 +4,7 @@ import PrimaryButton from '../components/PrimaryButton';
 import Title from '../components/Title';
 import Colors from '../constants/colors';
 
-const InputNumber = ({ onPickNumber }) => {
+const InputNumber = ({ pickedNumberHandler }) => {
     const [enteredNumber, setEnteredNumber] = useState(0);
 
     function numberInputHandler(enteredText) {
@@ -12,13 +12,12 @@ const InputNumber = ({ onPickNumber }) => {
     }
 
     const confirmHandler = () => {
-        const choosenNumber = parseInt(enteredNumber);
 
-        if (isNaN(choosenNumber) || (choosenNumber <= 0) || (choosenNumber > 99)) {
+        if (isNaN(parseInt(enteredNumber)) || (parseInt(enteredNumber) <= 0) || (parseInt(enteredNumber) > 99)) {
             Alert.alert("Hatalı Giriş!", "Girdiğiniz Sayı 1-99 aralığında olmalı", [{ text: "Okay", style: "destructive", onPress: resetHandler }]);
             return;
         }
-        onPickNumber(choosenNumber)
+        pickedNumberHandler(parseInt(enteredNumber));
     }
     const resetHandler = () => {
         setEnteredNumber("");
